@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemCreditContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:minHeight="72dp">
+
+
+    <ImageView
+        android:id="@+id/itemCreditImageView"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:transitionName="@string/transition_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UnusedAttribute" />
+
+    <TextView
+        android:id="@+id/itemYearTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="@string/n_a"
+        app:layout_constraintStart_toEndOf="@+id/itemCreditImageView"
+        app:layout_constraintTop_toTopOf="@+id/itemCreditImageView" />
+
+    <TextView
+        android:id="@+id/itemAsTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/n_a"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/itemCreditImageView"
+        app:layout_constraintTop_toBottomOf="@+id/itemTitleTextView" />
+
+    <TextView
+        android:id="@+id/itemTitleTextView"
+        style="@style/movieTitleStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/n_a"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/itemCreditImageView"
+        app:layout_constraintTop_toBottomOf="@+id/itemYearTextView" />
+
+    <TextView
+        android:id="@+id/itemVoteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/dots"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintBottom_toBottomOf="@+id/tmdb_icon"
+        app:layout_constraintStart_toEndOf="@+id/tmdb_icon"
+        app:layout_constraintTop_toTopOf="@+id/tmdb_icon" />
+
+    <ImageView
+        android:id="@+id/tmdb_icon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemCreditImageView"
+        app:layout_constraintStart_toEndOf="@+id/itemCreditImageView"
+        app:srcCompat="@drawable/tmdb_logo" />
+
+
+</android.support.constraint.ConstraintLayout>

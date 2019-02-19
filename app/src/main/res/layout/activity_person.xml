@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.cinemato.activities.PersonActivity">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/person_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/person_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/colorBaseGrey"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+
+            <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_scrollFlags="scroll|enterAlways"
+                tools:layout_editor_absoluteY="25dp">
+
+
+                <ProgressBar
+                    android:id="@+id/person_progressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.35000002" />
+
+
+                <android.support.v4.view.ViewPager
+
+                    android:id="@+id/person_view_pager"
+                    android:layout_width="0dp"
+                    android:layout_height="250dp"
+                    app:layout_constraintDimensionRatio=""
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:context=".activities.PersonActivity">
+
+                </android.support.v4.view.ViewPager>
+
+                <ImageView
+                    android:id="@+id/person_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:background="@color/colorBaseGrey"
+                    android:visibility="gone"
+                    app:layout_constraintDimensionRatio=""
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:context=".activities.PersonActivity" />
+
+
+                <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
+                    android:id="@+id/person_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/person_plain_imageView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:spi_dotColor="@color/colorWhite"
+                    app:spi_dotSelectedColor="@color/colorWhite" />
+
+
+                <ImageView
+                    android:id="@+id/person_plain_imageView"
+                    android:layout_width="0dp"
+                    android:layout_height="125dp"
+                    android:background="@color/colorBaseGrey"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/person_view_pager" />
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/person_profile_image"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="220dp"
+                    android:transitionName="myTransition2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:targetApi="lollipop" />
+
+
+                <TextView
+                    android:id="@+id/person_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:maxLines="2"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/person_plain_imageView"
+                    app:layout_constraintStart_toEndOf="@+id/person_profile_image"
+                    app:layout_constraintTop_toTopOf="@+id/person_plain_imageView"
+                    tools:text="TextView" />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/person_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginTop="32dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/person_sliding_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBaseGrey"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@android:color/holo_purple"
+            app:tabIndicatorHeight="3dp"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed" />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/person_fragment_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+</android.support.design.widget.CoordinatorLayout>

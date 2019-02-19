@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nested_container_movie_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.DetailsActivity"
+    tools:showIn="@layout/fragment_info">
+
+
+    <LinearLayout
+        android:id="@+id/info_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/info_overView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/n_a" />
+
+
+        <include
+            layout="@layout/detail_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/trailer_text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/trailers"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/trailer_recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            tools:context=".activities.DetailsActivity"
+            tools:listitem="@layout/list_item_trailer"
+
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+        <View
+            android:id="@+id/trailer_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/darker_gray"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/director_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textSize="18sp"
+            android:visibility="gone"
+            tools:text="More From ..." />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/director_recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            tools:context=".activities.DetailsActivity"
+            tools:listitem="@layout/list_item_director">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+        <View
+            android:id="@+id/director_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/darker_gray"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/recommend_text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/recommendations"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recommend_recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            tools:context=".activities.DetailsActivity"
+            tools:listitem="@layout/list_item_recommend">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>
