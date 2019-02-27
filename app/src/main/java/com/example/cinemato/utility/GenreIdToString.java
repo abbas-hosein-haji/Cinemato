@@ -6,9 +6,12 @@ import java.util.List;
 
 public class GenreIdToString {
 
-    private StringBuilder stringBuilder = new StringBuilder();
 
-    public GenreIdToString(List<Integer> genreIds) {
+
+    public StringBuilder findGenres(List<Integer> genreIds) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+
         SparseArray<String> mapGenreIds = new SparseArray<>();
         mapGenreIds.put(28, "Action");
         mapGenreIds.put(12, "Adventure");
@@ -38,12 +41,10 @@ public class GenreIdToString {
                 stringBuilder.append(mapGenreIds.get(genreIds.get(i))).append(",").append(" ");
             }
         }
-    }
 
-
-    public StringBuilder getStringBuilder() {
         return stringBuilder;
     }
+
 
 
 }

@@ -29,6 +29,7 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.cinema
 
     private final List<Movie> mMovie;
     private final Context mContext;
+    private GenreIdToString genreIdToString = new GenreIdToString();
 
     public MainListAdapter(List<Movie> movie, Context context) {
         mMovie = movie;
@@ -46,35 +47,14 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.cinema
     @Override
     public void onBindViewHolder(@NonNull cinemaViewHolder holder, int position) {
 
-        holder.movieTitle.setText(mMovie.get(holder.getAdapterPosition()).getTitle());
-        holder.genre.setText(new GenreIdToString(mMovie.get(holder.getAdapterPosition()).getGenreIds()).getStringBuilder());
-        holder.date.setText(mMovie.get(holder.getAdapterPosition()).getReleaseDate().split("-")[0]);
-        holder.rating.setText(String.valueOf(mMovie.get(holder.getAdapterPosition()).getVoteAverage()));
+        Movie movie = mMovie.get(holder.getAdapterPosition());
 
-        Glide.with(mContext)
-                .load("https://image.tmdb.org/t/p/w185/" + mMovie.get(holder.getAdapterPosition()).getPosterPath())
-                .skipMemoryCache(true)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.place_holder_w300)
-                .error(R.drawable.place_holder_w300_error)
-                .into(holder.poster);
-
-
-        holder.mView.setOnClickListener(view -> {
-            Intent intent = new Intent(mContext, DetailsActivity.class);
-            intent.putExtra("posterPath", mMovie.get(holder.getAdapterPosition()).getPosterPath());
-            intent.putExtra("id", mMovie.get(holder.getAdapterPosition()).getId());
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) mContext,
-                        holder.poster,
-                        "myTransition");
-                mContext.startActivity(intent, options.toBundle());
-            } else {
-                mContext.startActivity(intent);
-            }
-
-        });
+        holder.setTitle(movie.getTitle());
+        holder.setGenre(movie.getGenreIds());
+        holder.setDate(movie.getReleaseDate());
+        holder.setRating(movie.getVoteAverage());
+        holder.setImage(movie.getPosterPath());
+        holder.setOnClick(movie.getPosterPath(),movie.getId());
 
     }
 
@@ -93,6 +73,7 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.cinema
 
         final View mView;
 
+
         @BindView(R.id.main_title)
         TextView movieTitle;
         @BindView(R.id.main_jenre)
@@ -108,6 +89,54 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.cinema
             super(view);
             mView = view;
             ButterKnife.bind(this, view);
+        }
+
+
+         void setTitle(String string) {
+            this.movieTitle.setText(string);
+        }
+
+         void setGenre(List<Integer> genreIds) {
+            this.genre.setText(genreIdToString.findGenres(genreIds));
+        }
+
+         void setDate(String string) {
+            this.date.setText(string.split("-")[0]);
+        }
+
+         void setRating(Double d) {
+            this.rating.setText(String.valueOf(d));
+        }
+
+
+        void setImage(String posterPath) {
+            Glide.with(mContext)
+                    .load("https://image.tmdb.org/t/p/w185/" + posterPath)
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.place_holder_w300)
+                    .error(R.drawable.place_holder_w300_error)
+                    .into(this.poster);
+        }
+
+
+        void setOnClick(String posterPath, Integer id) {
+            this.mView.setOnClickListener(view -> {
+                Intent intent = new Intent(mContext, DetailsActivity.class);
+                intent.putExtra("posterPath", posterPath);
+                intent.putExtra("id", id);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) mContext,
+                            this.poster,
+                            "myTransition");
+                    mContext.startActivity(intent, options.toBundle());
+                } else {
+                    mContext.startActivity(intent);
+                }
+
+            });
+
         }
     }
 
