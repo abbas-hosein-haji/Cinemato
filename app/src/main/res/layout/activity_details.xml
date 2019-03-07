@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -25,7 +26,8 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
-            <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <android.support.constraint.ConstraintLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
@@ -41,7 +43,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:indeterminateTint="@color/colorBaseGrey"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -59,7 +60,9 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:context=".activities.DetailsActivity"></android.support.v4.view.ViewPager>
+                    tools:context=".activities.DetailsActivity">
+
+                </android.support.v4.view.ViewPager>
 
                 <ImageView
                     android:id="@+id/empty_view_pager"
@@ -229,8 +232,6 @@
             android:layout_height="wrap_content"
             android:background="@color/colorBaseGrey"
             app:tabGravity="fill"
-            app:tabIndicatorColor="@android:color/holo_purple"
-            app:tabIndicatorHeight="3dp"
             app:tabMaxWidth="0dp"
             app:tabMode="fixed" />
 

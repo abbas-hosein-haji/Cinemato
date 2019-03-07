@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -101,7 +100,6 @@ public class DetailsActivity extends AppCompatActivity implements ComponentCallb
 
 
     MyString myString;
-    ViewPager.OnPageChangeListener myListener;
     @NonNull
     private CompositeDisposable mCompositeDisposable;
     @NonNull
@@ -132,7 +130,7 @@ public class DetailsActivity extends AppCompatActivity implements ComponentCallb
     protected void onPause() {
         super.onPause();
         unBind();
-        detailViewPager.removeOnPageChangeListener(myListener);
+
     }
 
     private void setupViews() {
@@ -192,40 +190,20 @@ public class DetailsActivity extends AppCompatActivity implements ComponentCallb
 
 
     private void setImages(@NonNull final List<ImageObject> imageObjects) {
-        if (imageObjects.size() < 1) {
+        if (imageObjects.size() > 0) {
+            mAdapter = new DetailsPagerAdapter(this, imageObjects);
+            detailViewPager.setAdapter(mAdapter);
+            indicator.attachToPager(detailViewPager);
+
+        } else {
             emptyViewPager.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+
         }
-        mAdapter = new DetailsPagerAdapter(this, imageObjects);
-        detailViewPager.setAdapter(mAdapter);
-        indicator.attachToPager(detailViewPager);
-        setupViewPagerSettings(detailViewPager);
 
 
-    }
 
-    private void setupViewPagerSettings(ViewPager detailViewPager) {
-        (new Handler()).postDelayed(this::invisibleProgressBar, 3000);
-        myListener = new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-            }
 
-            @Override
-            public void onPageSelected(int i) {
-                progressBar.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-                progressBar.setVisibility(View.GONE);
-            }
-        };
-        detailViewPager.addOnPageChangeListener(myListener);
-
-    }
-
-    private void invisibleProgressBar() {
-        progressBar.setVisibility(View.GONE);
     }
 
 

@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
@@ -22,7 +21,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -46,19 +44,21 @@ public class PosterDialogFragment extends DialogFragment {
 
     @BindView(R.id.slide_view_pager)
     ViewPager viewPager;
+
     @BindView(R.id.dialog_toolbar)
     Toolbar toolbar;
-    @BindView(R.id.dialog_progressBar)
-    ProgressBar progressBar;
+
+
     private String TAG = PosterDialogFragment.class.getSimpleName();
     private int selectedPosition = 0;
     private ArrayList<ImageObject> images;
+
+
     //  page change listener
     ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageSelected(int position) {
             toolbar.setTitle((position + 1) + " of " + images.size());
-            progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -67,7 +67,6 @@ public class PosterDialogFragment extends DialogFragment {
 
         @Override
         public void onPageScrollStateChanged(int arg0) {
-            progressBar.setVisibility(View.GONE);
         }
     };
     private Unbinder unbinder;
@@ -112,7 +111,6 @@ public class PosterDialogFragment extends DialogFragment {
 
 
     private void setupViewPager(ViewPager viewPager) {
-        (new Handler()).postDelayed(this::invisibleProgressBar, 2000);
         PosterDialogAdapter adapter = new PosterDialogAdapter(getContext(), images);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
@@ -169,12 +167,6 @@ public class PosterDialogFragment extends DialogFragment {
         Log.e(TAG, "images size: " + images.size());
     }
 
-    private void invisibleProgressBar() {
-        if (progressBar != null) {
-            progressBar.setVisibility(View.GONE);
-        }
-
-    }
 
     //download image for saving
     public void downloadFile() {
