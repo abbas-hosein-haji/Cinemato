@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +47,7 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.actorViewHol
         Glide.with(mContext)
                 .load("https://image.tmdb.org/t/p/w185/" + mImages.get(position).getFilePath())
                 .placeholder(R.drawable.place_holder_w300)
-                .error(R.drawable.place_holder_w300_error)
+                .error(AppCompatResources.getDrawable(mContext, R.drawable.place_holder_w300_error))
                 .into(holder.image);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {

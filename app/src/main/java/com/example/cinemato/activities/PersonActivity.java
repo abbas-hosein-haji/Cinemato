@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -180,8 +181,8 @@ public class PersonActivity extends AppCompatActivity {
         Glide.with(this)
                 .load("https://image.tmdb.org/t/p/w185/" + profilePath)
                 .dontAnimate()
-                .placeholder(R.drawable.ic_person_80dp)
-                .error(R.drawable.ic_person_80dp)
+                .placeholder(AppCompatResources.getDrawable(this, R.drawable.ic_person_80dp))
+                .error(AppCompatResources.getDrawable(this, R.drawable.ic_person_80dp))
                 .into(profileImageView);
     }
 

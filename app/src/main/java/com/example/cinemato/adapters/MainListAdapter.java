@@ -3,6 +3,7 @@ package com.example.cinemato.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,7 +94,7 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.cinema
                      .skipMemoryCache(true)
                      .diskCacheStrategy(DiskCacheStrategy.ALL)
                      .placeholder(R.drawable.place_holder_w300)
-                     .error(R.drawable.place_holder_w300_error)
+                     .error(AppCompatResources.getDrawable(mContext, R.drawable.place_holder_w300_error))
                      .into(this.poster);
         }
 

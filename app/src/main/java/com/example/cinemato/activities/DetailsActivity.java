@@ -16,6 +16,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -153,7 +154,7 @@ public class DetailsActivity extends AppCompatActivity implements ComponentCallb
                 .load("https://image.tmdb.org/t/p/w185/" + posterPath)
                 .dontAnimate()
                 .placeholder(R.drawable.place_holder_w300)
-                .error(R.drawable.place_holder_w300_error)
+                .error(AppCompatResources.getDrawable(this, R.drawable.place_holder_w300_error))
                 .into(posterImageView);
 
     }

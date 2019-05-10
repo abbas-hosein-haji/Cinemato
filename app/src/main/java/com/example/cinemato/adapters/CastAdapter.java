@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,8 +52,8 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.castViewHolder
         Glide.with(mContext)
                 .load("https://image.tmdb.org/t/p/w185/" + mCasts.get(position).getProfilePath())
                 .dontAnimate()
-                .placeholder(R.drawable.ic_person_80dp)
-                .error(R.drawable.ic_person_80dp)
+                .placeholder(AppCompatResources.getDrawable(mContext, R.drawable.ic_person_80dp))
+                .error(AppCompatResources.getDrawable(mContext, R.drawable.ic_person_80dp))
                 .into(holder.image);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {

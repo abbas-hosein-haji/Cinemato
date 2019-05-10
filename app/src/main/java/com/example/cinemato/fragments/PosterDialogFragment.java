@@ -81,7 +81,7 @@ public class PosterDialogFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Material_NoActionBar_TranslucentDecor);
-        }
+        } else setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_NoTitleBar_Fullscreen);
 
     }
 

@@ -2,6 +2,7 @@ package com.example.cinemato;
 
 import android.app.Application;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatDelegate;
 
 import com.example.cinemato.datamodel.DataModel;
 import com.example.cinemato.datamodel.IDataModel;
@@ -54,6 +55,11 @@ public class CinemaApplication extends Application {
         return new SearchActivityViewModel(getDataModel(), getSchedulerProvider());
     }
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
 
 //    @Override
 //    public void onCreate() {

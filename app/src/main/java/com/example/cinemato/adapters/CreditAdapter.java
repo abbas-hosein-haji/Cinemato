@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,7 +61,7 @@ public class CreditAdapter extends RecyclerView.Adapter<CreditAdapter.creditView
         Glide.with(mContext)
                 .load("https://image.tmdb.org/t/p/w185/" + mCredits.get(position).getPosterPath())
                 .placeholder(R.drawable.place_holder_w300)
-                .error(R.drawable.place_holder_w300_error)
+                .error(AppCompatResources.getDrawable(mContext, R.drawable.place_holder_w300_error))
                 .into(holder.image);
 
         holder.mView.setOnClickListener(view -> {
