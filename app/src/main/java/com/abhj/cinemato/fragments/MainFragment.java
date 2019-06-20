@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.abhj.cinemato.CinemaApplication;
@@ -44,8 +44,8 @@ public class MainFragment extends Fragment {
     RecyclerView.OnItemTouchListener listener;
     @BindView(R.id.main_recyclerView)
     RecyclerView mRecyclerView;
-    @BindView(R.id.progressBar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.swiperefresh)
+    SwipeRefreshLayout mSwipeRefresh;
     private int mColumnCount = 1;
     private int mViewpagerPosition;
     private int mCurrentPage = 1;
@@ -58,6 +58,8 @@ public class MainFragment extends Fragment {
     @Nullable
     private MainListAdapter mMainListAdapter;
     private Unbinder unbinder;
+
+
 
     public MainFragment() {
         // Required empty public constructor
@@ -107,8 +109,13 @@ public class MainFragment extends Fragment {
         swipeEnhancer(mRecyclerView);
         setupOnScrollListener(mRecyclerView);
         setupRecyclerView(mRecyclerView);
+        swipeRefreshLayout();
 
         return view;
+    }
+
+    private void swipeRefreshLayout() {
+        mSwipeRefresh.setOnRefreshListener(this::bind);
     }
 
 
@@ -127,6 +134,7 @@ public class MainFragment extends Fragment {
 
 
     private void bind() {
+        mSwipeRefresh.setRefreshing(true);
         myPage = new Page(mViewpagerPosition, mCurrentPage, mSearchQuery);
         mViewModel.pageChanged(myPage);
         mCompositeDisposable = new CompositeDisposable();
@@ -139,7 +147,7 @@ public class MainFragment extends Fragment {
                         setMovies(movies);
                         mIsFetching = false;
                         mCurrentPage = mCurrentPage + 1;
-                        mProgressBar.setVisibility(View.GONE);
+                        mSwipeRefresh.setRefreshing(false);
                     }
 
                     @Override
@@ -234,7 +242,7 @@ public class MainFragment extends Fragment {
                         myPage = new Page(mViewpagerPosition, mCurrentPage + 1, mSearchQuery);
                         mViewModel.pageChanged(myPage);
                         mIsFetching = true;
-                        mProgressBar.setVisibility(View.VISIBLE);
+                        mSwipeRefresh.setRefreshing(true);
                     }
                 }
             }
